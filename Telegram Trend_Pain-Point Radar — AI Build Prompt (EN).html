@@ -1,0 +1,349 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}</style><style>:root{color-scheme:light dark;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}}:root[data-theme="dark"]{color-scheme:dark;--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}:root[data-theme="light"]{color-scheme:light}@media print{:root,:root[data-theme="dark"]{color-scheme:light;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}}body{background:var(--md-bg);color:var(--md-text);max-width:720px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:10px;font:14px/1.55 -apple-system,BlinkMacSystemFont,'SF Pro','Segoe UI',sans-serif;overflow-wrap:break-word}body>:first-child{margin-top:0}h1,h2,h3,h4,h5,h6{margin:6px 0 0;line-height:1.25;font-weight:600;text-wrap:balance}h1{font-size:1.35em}h2{font-size:1.15em;color:var(--md-muted)}h3,h4,h5,h6{font-size:1em}p,ul,ol,blockquote,table,pre,hr{margin:0}strong{font-weight:600}a{color:var(--md-link);text-decoration:none}a:hover{text-decoration:underline}ul,ol{display:flex;flex-direction:column;gap:6px;padding-left:22px}ul{list-style:disc}ol{list-style:decimal}:is(li,td,th)>*+:is(p,ul,ol,blockquote){margin-top:6px}blockquote{display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--md-rule);padding-left:10px;color:var(--md-muted)}:not(pre)>code{background:var(--md-fill);padding:1px 3px;border-radius:4px;font:.92em 'SF Mono',ui-monospace,Menlo,Consolas,monospace}a>code{background:none;color:inherit}pre{background:var(--md-fill);padding:10px 12px;border-radius:6px;overflow-x:auto;font:12px/1.5 'SF Mono',ui-monospace,Menlo,Consolas,monospace;margin-block:4px}pre code{background:none;padding:0;font:inherit}table{width:100%;border-collapse:separate;border-spacing:2px;font:inherit}th,td{padding:6px 8px;border-radius:3px;text-align:left;vertical-align:top}th{background:var(--md-fill-strong);font-weight:600}td{background:var(--md-fill)}:is(th,td) :not(pre)>code{background:transparent}hr{border:0;border-top:1px solid var(--md-rule-strong);margin-block:10px}img{max-width:100%;height:auto;border-radius:4px}</style>
+</head><body>
+<h1>AI Build Prompt: Telegram Trend &amp; Pain-Point Radar</h1>
+<blockquote>
+<p>Paste this entire document into your AI coding agent (Antigravity, Claude Code, etc.). Read it fully before writing any code, then execute the phased TODO list at the bottom, committing to Git after every phase.</p>
+</blockquote>
+<hr>
+<h2>1. ROLE &amp; MISSION</h2>
+<p>You are a senior full-stack architect. You will build a <strong>production-grade, portfolio-quality monorepo</strong> from scratch: a Telegram bot product that lets users track their favorite public Telegram channels and receive short, digestible summaries twice a day instead of scrolling through hundreds of raw posts.</p>
+<p>You must:</p>
+<ol>
+<li>Build everything described below with production-level code quality.</li>
+<li>Structure the work in clear, incremental phases (see Section 8).</li>
+<li><strong>Commit to Git after completing each phase</strong>, with a clean, descriptive commit message (e.g. <code>feat(database): initial Prisma schema for users, channels, digests</code>). This repository will be shown publicly as a portfolio piece — commit history must read like a well-planned, professional build log, not a single giant commit.</li>
+<li>Ask for the GitHub remote URL before Phase 0 if it hasn't been provided, then push after each phase's commit.</li>
+</ol>
+<hr>
+<h2>2. PROBLEM &amp; PRODUCT VISION</h2>
+<p><strong>Problem</strong>: People who follow many niche Telegram channels (tech influencers, industry news, niche communities) cannot keep up with the volume. Reading every post from 10-20 channels daily is exhausting, and important information gets buried.</p>
+<p><strong>Solution</strong>: A Telegram bot where a user (1) selects topics of interest, (2) adds a handful of public Telegram channels they already follow, and (3) receives <strong>exactly two digest messages per day</strong> — short, scannable summaries of new posts from their channels, each ending with a <code>Batafsil: [link]</code> (&quot;Read more&quot;) link pointing to the original post for anyone who wants full detail.</p>
+<p><strong>Product language</strong>: The end-user-facing bot interface (all messages, buttons, onboarding copy) must be in <strong>Uzbek</strong>. Code, comments, commit messages, and this document stay in English.</p>
+<p><strong>Core design principle — brevity over completeness</strong>: Digest messages must never feel like a wall of text. Each channel's update is summarized in 1-3 sentences maximum, never a full repost of the original content. This is both a UX requirement and a copyright-safety requirement (never reproduce full original post text — always paraphrase + link).</p>
+<hr>
+<h2>3. TELEGRAM COMPLIANCE REQUIREMENTS (non-negotiable)</h2>
+<p>This product must operate strictly within Telegram's rules. Design every component with these constraints in mind:</p>
+<ul>
+<li><strong>No unauthorized scraping abuse.</strong> Prefer the official Telegram Bot API wherever possible. For public channels the bot is not a member of, use the public <code>t.me/s/{channel}</code> preview endpoint <strong>only</strong> as a lightweight, low-frequency, read-only fallback — never more than a handful of requests per channel per day, with caching so multiple users tracking the same channel trigger only <strong>one</strong> fetch, not one per user.</li>
+<li><strong>Respect rate limits.</strong> All outbound bot messages must go through the official Bot API's rate limits (~1 message/sec per chat, ~30 messages/sec globally across chats). Implement a proper outgoing message queue with throttling — do not fire messages in an unthrottled loop.</li>
+<li><strong>No spam, no unsolicited messages.</strong> Users must explicitly opt in via <code>/start</code> and explicit channel additions. Provide a clear <code>/stop</code> or unsubscribe command that immediately halts all future digests for that user, respecting Telegram bot policy on user consent.</li>
+<li><strong>No full-content reproduction.</strong> Never forward or reproduce a full original post. Always summarize in your own generated words and link back to the source (<code>https://t.me/{channel}/{message_id}</code>).</li>
+<li><strong>Transparent identity.</strong> The bot must have a clear name/description explaining what it does and how to stop it, per Telegram bot guidelines.</li>
+<li><strong>Data minimalism.</strong> Only store what's needed to operate (channel usernames, cached post metadata, user preferences). Do not store or process users' personal Telegram account data — users only ever provide channel <em>usernames</em>, never their own account credentials or session.</li>
+</ul>
+<hr>
+<h2>4. SYSTEM ARCHITECTURE</h2>
+<h3>4.1 Monorepo Layout</h3>
+<pre><code>telegram-radar/
+├── apps/
+│   ├── bot/           # Telegram bot service (onboarding, commands, digest delivery)
+│   ├── worker/         # Scheduled scraper + LLM summarizer
+│   └── admin/          # Internal admin dashboard (Next.js, private, for the founder)
+├── packages/
+│   ├── database/       # Prisma schema + client, shared by bot/worker/admin
+│   └── shared-types/    # Shared TypeScript types/enums
+├── turbo.json
+└── package.json
+</code></pre>
+<p>Package manager: <strong>pnpm</strong> + <strong>Turborepo</strong>.</p>
+<h3>4.2 Architecture Diagram (render this exactly as a Mermaid diagram in the repo's <code>ARCHITECTURE.md</code>)</h3>
+<pre class="mermaid">flowchart TD
+    U[&#34;User on Telegram&#34;] --&gt;|&#34;/start, add channel, set interests&#34;| BOT[&#34;Bot Service (aiogram)&#34;]
+    BOT --&gt;|&#34;read/write&#34;| DB[(&#34;PostgreSQL via Prisma&#34;)]
+    SCHED[&#34;Cron Scheduler (2x/day)&#34;] --&gt; WORKER[&#34;Worker Service&#34;]
+    WORKER --&gt;|&#34;fetch new posts (cached, deduped)&#34;| TG_PUB[&#34;Public Channel Source (t.me/s/ or Bot API)&#34;]
+    WORKER --&gt;|&#34;summarize + categorize&#34;| LLM[&#34;LLM API (Claude)&#34;]
+    WORKER --&gt;|&#34;write digests&#34;| DB
+    WORKER --&gt;|&#34;enqueue digest jobs&#34;| QUEUE[&#34;Outgoing Message Queue (throttled)&#34;]
+    QUEUE --&gt;|&#34;send digest, 1 msg/sec/chat&#34;| BOT
+    BOT --&gt;|&#34;deliver &#39;Yangiliklar&#39; digest&#34;| U
+    ADMIN[&#34;Admin Dashboard (Next.js)&#34;] --&gt;|&#34;read-only + moderation&#34;| DB
+    ADMIN_USER[&#34;Founder / Admin&#34;] --&gt; ADMIN
+</pre>
+<h3>4.3 Component Responsibilities</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apps/bot</code></td>
+<td>Handles <code>/start</code>, onboarding conversation (interests + channels), user commands (<code>/mychannels</code>, <code>/addchannel</code>, <code>/removechannel</code>, <code>/stop</code>), and delivers digest messages via the throttled queue</td>
+</tr>
+<tr>
+<td><code>apps/worker</code></td>
+<td>Runs on a cron schedule (default: 09:00 and 20:00 user-local or a fixed timezone, configurable), fetches new posts per unique tracked channel (deduplicated across users), calls the LLM to summarize + tag each post, builds per-user digests, enqueues delivery</td>
+</tr>
+<tr>
+<td><code>apps/admin</code></td>
+<td>Password-protected internal dashboard for the founder: user stats, channel stats, digest delivery success/failure rates, growth charts, manual user management</td>
+</tr>
+<tr>
+<td><code>packages/database</code></td>
+<td>Single source of truth Prisma schema, used by all three apps</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>5. BOT CONVERSATION FLOW (Uzbek UI copy — write actual bot strings in Uzbek)</h2>
+<ol>
+<li><strong><code>/start</code></strong> → Welcome message in Uzbek explaining what the bot does in 2-3 sentences.</li>
+<li><strong>Interest selection</strong> → Inline keyboard with topic categories (e.g. &quot;Texnologiya&quot;, &quot;Startap&quot;, &quot;Karyera&quot;, &quot;AI&quot;, &quot;Biznes&quot;, &quot;Ta'lim&quot; — make this configurable, not hardcoded) — multi-select, then a &quot;Davom etish&quot; (Continue) button.</li>
+<li><strong>Channel addition</strong> → Bot asks user to send a channel username (e.g. <code>@kanalnomi</code>) or forward a post from the channel. Bot validates the channel is public and reachable, confirms with channel name back to user. Repeat until user sends &quot;Tayyor&quot; (Done) or reaches a reasonable max (e.g. 15 channels).</li>
+<li><strong>Confirmation</strong> → Summary of selected interests + channels, explain the twice-daily digest schedule, and how to use <code>/stop</code>.</li>
+<li><strong>Ongoing commands</strong>: <code>/mychannels</code> (list/remove), <code>/addchannel</code>, <code>/interests</code> (edit), <code>/stop</code> (unsubscribe, with confirmation step), <code>/help</code>.</li>
+</ol>
+<h3>Digest message format (Uzbek, example structure — keep this exact pattern in the implementation)</h3>
+<pre><code>📰 Bugungi yangiliklar
+
+▸ @kanalnomi
+[1-2 gapli xulosa, o&#39;z so&#39;zlar bilan]
+Batafsil: https://t.me/kanalnomi/12345
+
+▸ @boshqakanal
+[1-2 gapli xulosa]
+Batafsil: https://t.me/boshqakanal/6789
+</code></pre>
+<p>Rules for the worker when building this message:</p>
+<ul>
+<li>Skip channels with no new posts since the last digest — never send &quot;no updates&quot; noise.</li>
+<li>If a channel has many new posts, summarize the most significant ones only (cap at ~3 items per channel per digest) rather than listing everything.</li>
+<li>Never let a single digest message exceed a comfortable reading length (target under ~600 characters per channel entry; split into multiple Telegram messages only if truly necessary, never as a wall of text in one message).</li>
+</ul>
+<hr>
+<h2>6. DATABASE SCHEMA (Prisma — implement exactly, extend only if needed)</h2>
+<pre><code class="language-prisma">model User {
+  id            String   @id @default(cuid())
+  telegramId    BigInt   @unique
+  username      String?
+  interests     UserInterest[]
+  channels      UserChannel[]
+  createdAt     DateTime @default(now())
+  isActive      Boolean  @default(true) // false after /stop
+  digestHourUtc Int      @default(6)    // first of the 2 daily slots, configurable later
+}
+
+model Interest {
+  id    String @id @default(cuid())
+  name  String @unique   // e.g. &#34;Texnologiya&#34;, &#34;Karyera&#34;
+  users UserInterest[]
+}
+
+model UserInterest {
+  userId     String
+  interestId String
+  user       User     @relation(fields: [userId], references: [id])
+  interest   Interest @relation(fields: [interestId], references: [id])
+  @@id([userId, interestId])
+}
+
+model Channel {
+  id            String   @id @default(cuid())
+  username      String   @unique // without @
+  title         String?
+  lastScrapedAt DateTime?
+  isReachable   Boolean  @default(true)
+  users         UserChannel[]
+  posts         Post[]
+}
+
+model UserChannel {
+  userId    String
+  channelId String
+  user      User    @relation(fields: [userId], references: [id])
+  channel   Channel @relation(fields: [channelId], references: [id])
+  addedAt   DateTime @default(now())
+  @@id([userId, channelId])
+}
+
+model Post {
+  id            String   @id @default(cuid())
+  channelId     String
+  channel       Channel  @relation(fields: [channelId], references: [id])
+  telegramMsgId BigInt
+  rawText       String?
+  summary       String?  // LLM-generated short summary
+  category      String?  // matched to Interest for personalization
+  postedAt      DateTime?
+  fetchedAt     DateTime @default(now())
+  @@unique([channelId, telegramMsgId])
+}
+
+model Digest {
+  id          String   @id @default(cuid())
+  userId      String
+  sentAt      DateTime @default(now())
+  status      String   // &#34;sent&#34; | &#34;failed&#34; | &#34;skipped_no_updates&#34;
+  postIds     String[] // posts included in this digest
+}
+</code></pre>
+<hr>
+<h2>7. QUALITY &amp; ENGINEERING STANDARDS</h2>
+<ul>
+<li>TypeScript strict mode everywhere, no <code>any</code>.</li>
+<li><code>apps/bot</code> and <code>apps/worker</code>: Node.js + TypeScript, <code>aiogram</code>-equivalent (e.g. <code>grammY</code> or <code>telegraf</code> for Node) for bot logic.</li>
+<li><code>apps/admin</code>: Next.js (App Router) + TypeScript + Tailwind + shadcn/ui, protected by a simple admin-only auth (env-var credential or single admin account — this is an internal tool, not public-facing).</li>
+<li>The worker's scraping/fetching layer must be isolated behind an interface (<code>ChannelSource</code>) so the scraping method (public preview page vs. official Bot API membership) can be swapped or run as a fallback chain without touching business logic.</li>
+<li>All external calls (Telegram fetch, LLM calls) wrapped with retries + exponential backoff + timeout.</li>
+<li>Structured logging (no console.log soup) — one logger utility shared across apps.</li>
+<li><code>.env.example</code> files in every app documenting required environment variables.</li>
+<li>Unit tests for: digest-building logic, channel validation, summarization prompt formatting, rate-limit queue behavior.</li>
+<li><code>ARCHITECTURE.md</code> at repo root containing the Mermaid diagram from Section 4.2, plus a short written explanation of each component — this is the file a recruiter or visitor reads first.</li>
+<li><code>README.md</code> explaining the problem, the product, setup instructions, and a link to <code>ARCHITECTURE.md</code>.</li>
+</ul>
+<hr>
+<h2>8. PHASED TODO LIST — execute in order, commit + push after each phase</h2>
+<blockquote>
+<p>After finishing each phase: run tests if applicable, write a clear commit message describing exactly what was added, commit, and push to the GitHub remote. Then give a short summary and wait for confirmation before starting the next phase.</p>
+</blockquote>
+<h3>Phase 0 — Repository &amp; Monorepo Skeleton</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Initialize Git repo, connect to the provided GitHub remote</li>
+<li><input disabled="" type="checkbox"> Set up Turborepo + pnpm workspaces (<code>apps/bot</code>, <code>apps/worker</code>, <code>apps/admin</code>, <code>packages/database</code>, <code>packages/shared-types</code>)</li>
+<li><input disabled="" type="checkbox"> Add root <code>README.md</code> (placeholder), <code>.gitignore</code>, ESLint + Prettier config, <code>.env.example</code> templates</li>
+<li><input disabled="" type="checkbox"> Commit: <code>chore: initialize monorepo skeleton</code></li>
+</ul>
+<h3>Phase 1 — Database Layer</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Implement the Prisma schema from Section 6 in <code>packages/database</code></li>
+<li><input disabled="" type="checkbox"> Generate and run the first migration</li>
+<li><input disabled="" type="checkbox"> Write a seed script with a handful of sample interests (Uzbek names) for local dev</li>
+<li><input disabled="" type="checkbox"> Commit: <code>feat(database): initial schema for users, channels, posts, digests</code></li>
+</ul>
+<h3>Phase 2 — Channel Source Abstraction (Worker foundation)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Build the <code>ChannelSource</code> interface in <code>apps/worker</code> with two implementations: (a) public preview fetcher with caching + conservative rate limiting, (b) official Bot API fallback for channels the bot has joined</li>
+<li><input disabled="" type="checkbox"> Implement deduplication logic so a channel tracked by multiple users is fetched only once per cycle</li>
+<li><input disabled="" type="checkbox"> Commit: <code>feat(worker): channel source abstraction with rate-limited fetching</code></li>
+</ul>
+<h3>Phase 3 — Summarization Pipeline</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Integrate the LLM summarization call: given raw post text, produce a 1-2 sentence Uzbek-language summary plus a category tag matched against the <code>Interest</code> list</li>
+<li><input disabled="" type="checkbox"> Persist results into the <code>Post</code> model</li>
+<li><input disabled="" type="checkbox"> Commit: <code>feat(worker): LLM-based post summarization and categorization</code></li>
+</ul>
+<h3>Phase 4 — Digest Builder &amp; Delivery Queue</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Build per-user digest assembly logic (Section 5 formatting rules, skip-if-no-updates, per-channel cap)</li>
+<li><input disabled="" type="checkbox"> Implement the throttled outgoing message queue respecting Telegram rate limits</li>
+<li><input disabled="" type="checkbox"> Commit: <code>feat(worker): digest builder and throttled delivery queue</code></li>
+</ul>
+<h3>Phase 5 — Bot Service &amp; Onboarding</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Implement <code>/start</code> onboarding flow (interests → channels → confirmation) exactly as specified in Section 5, all UI text in Uzbek</li>
+<li><input disabled="" type="checkbox"> Implement <code>/mychannels</code>, <code>/addchannel</code>, <code>/removechannel</code>, <code>/interests</code>, <code>/stop</code>, <code>/help</code></li>
+<li><input disabled="" type="checkbox"> Wire the bot to consume from the delivery queue built in Phase 4</li>
+<li><input disabled="" type="checkbox"> Commit: <code>feat(bot): full onboarding flow and user commands</code></li>
+</ul>
+<h3>Phase 6 — Scheduler</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Add the cron scheduler triggering the worker twice daily</li>
+<li><input disabled="" type="checkbox"> Add failure handling/alerting if a full cycle fails</li>
+<li><input disabled="" type="checkbox"> Commit: <code>feat(worker): twice-daily scheduled digest cycle</code></li>
+</ul>
+<h3>Phase 7 — Admin Dashboard</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Build the Next.js admin app: login-gated, dashboard home with key metrics (total users, active users, channels tracked, digests sent today, delivery success rate)</li>
+<li><input disabled="" type="checkbox"> User list view with search + ability to deactivate a user</li>
+<li><input disabled="" type="checkbox"> Channel list view with last-scraped status and reachability</li>
+<li><input disabled="" type="checkbox"> Simple growth chart (users over time)</li>
+<li><input disabled="" type="checkbox"> Commit: <code>feat(admin): internal dashboard with stats and user management</code></li>
+</ul>
+<h3>Phase 8 — Documentation &amp; Portfolio Polish</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Write <code>ARCHITECTURE.md</code> with the Mermaid diagram and component explanations</li>
+<li><input disabled="" type="checkbox"> Write the full <code>README.md</code> (problem, solution, screenshots/GIF if possible, setup steps, tech stack badges)</li>
+<li><input disabled="" type="checkbox"> Final pass: ensure <code>.env.example</code> files are complete and accurate for a stranger to run the project locally</li>
+<li><input disabled="" type="checkbox"> Commit: <code>docs: architecture overview and complete README</code></li>
+</ul>
+<h3>Phase 9 — Testing &amp; Deployment</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Add unit tests listed in Section 7</li>
+<li><input disabled="" type="checkbox"> Deploy <code>apps/bot</code> + <code>apps/worker</code> (e.g. Railway/Render with a persistent process + cron), <code>apps/admin</code> to Vercel, database to Supabase/Neon</li>
+<li><input disabled="" type="checkbox"> Commit: <code>test: core unit tests</code> then <code>chore: deployment configuration</code></li>
+</ul>
+<hr>
+<h2>9. FINAL NOTE TO THE AI</h2>
+<p>This is a real product meant to demonstrate professional engineering judgment — not a toy script. Favor clean abstractions over shortcuts, respect the Telegram compliance rules in Section 3 as hard constraints (not suggestions), and keep the Git history readable as a build narrative from empty repo to finished product.</p>
+
+
+<!--claude-mermaid-runtime-begin:3477-->
+<style>.mermaid-diagram{margin-block:4px}.mermaid-diagram svg{display:block;margin:0 auto;max-width:100%;height:auto}</style>
+<script src="/_runtime/mermaid-11.16.1.min.js"></script>
+<script>(function(){
+var CFG={"palettes":{"light":{"surface":"#f4efe4","text":"#42392e","line":"#8a7f6d","border":"#7a6c52","bg":"#fffdf8"},"dark":{"surface":"#262b34","text":"#f2f3f5","line":"#a8adb8","border":"#9aa4b8","bg":"#1f232b"}}};
+if(typeof mermaid==='undefined')return;
+var pres=Array.prototype.slice.call(document.querySelectorAll('pre.mermaid')).filter(function(p){if(p.hasAttribute('data-claude-mermaid-claimed'))return false;p.setAttribute('data-claude-mermaid-claimed','1');return true;});
+if(!pres.length)return;
+var mq=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+var root=document.documentElement;
+var items=pres.map(function(pre){
+var mount=document.createElement('div');mount.className='mermaid-diagram';
+return {pre:pre,mount:mount,src:pre.textContent||''};
+});
+var seq=0;
+var renderGen=0;
+var lastKey='';
+function pageBg(fallback){
+var els=[document.body,document.documentElement];
+for(var i=0;i<els.length;i++){
+var c=els[i]&&getComputedStyle(els[i]).backgroundColor;
+if(c&&c!=='transparent'&&c!=='rgba(0, 0, 0, 0)')return c;
+}
+return fallback;
+}
+function render(){
+var theme=root.getAttribute('data-theme');
+var dark=theme==='dark'||(!!(mq&&mq.matches)&&theme!=='light');
+var pal=dark?CFG.palettes.dark:CFG.palettes.light;
+var bg=pageBg(pal.bg);
+var key=(dark?'d':'l')+'|'+bg;
+if(key===lastKey)return;
+lastKey=key;
+var gen=++renderGen;
+var font=getComputedStyle(document.body).fontFamily||'sans-serif';
+var nat={useMaxWidth:false};
+mermaid.initialize({
+startOnLoad:false,securityLevel:'strict',theme:'base',
+flowchart:nat,sequence:nat,er:nat,state:nat,class:nat,pie:nat,
+gantt:nat,journey:nat,timeline:nat,gitGraph:nat,mindmap:nat,xyChart:nat,
+quadrantChart:nat,sankey:nat,c4:nat,requirement:nat,block:nat,
+packet:nat,kanban:nat,architecture:nat,radar:nat,
+themeVariables:{background:bg,mainBkg:pal.surface,primaryColor:pal.surface,
+primaryTextColor:pal.text,lineColor:pal.line,primaryBorderColor:pal.border,
+nodeBorder:pal.border,clusterBorder:pal.border,edgeLabelBackground:bg,
+clusterBkg:'rgba(127,127,127,0.07)',titleColor:pal.text,
+darkMode:dark,rowOdd:bg,rowEven:'rgba(127,127,127,0.07)',
+attributeBackgroundColorOdd:bg,attributeBackgroundColorEven:'rgba(127,127,127,0.07)',
+fontSize:'16px',fontFamily:font},
+themeCSS:'.node rect, .node circle, .node polygon, .node path, .cluster rect { stroke-width: 2px; }'
+});
+items.forEach(function(it){
+var id='claude-mermaid-'+seq++;
+mermaid.render(id,it.src).then(function(r){
+if(gen!==renderGen)return;
+var prev=it.pre.previousElementSibling;
+if(prev&&prev.className==='mermaid-diagram'&&prev!==it.mount)return;
+it.mount.innerHTML=r.svg;
+if(!it.mount.parentNode)it.pre.parentNode.insertBefore(it.mount,it.pre);
+it.pre.style.display='none';
+},function(){
+var scratch=document.getElementById(id);
+if(scratch)scratch.parentNode.removeChild(scratch);
+scratch=document.getElementById('d'+id);
+if(scratch)scratch.parentNode.removeChild(scratch);
+if(gen!==renderGen)return;
+if(it.mount.parentNode)it.mount.parentNode.removeChild(it.mount);
+it.pre.style.display='';
+});
+});
+}
+render();
+if(mq&&mq.addEventListener)mq.addEventListener('change',render);
+if(typeof MutationObserver!=='undefined')new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['data-theme']});
+})();</script>
+<!--claude-mermaid-runtime-end-->
+</body></html>

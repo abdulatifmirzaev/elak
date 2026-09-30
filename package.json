@@ -1,0 +1,24 @@
+{
+  "name": "elak-radar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Telegram Trend & Pain-Point Radar Monorepo",
+  "packageManager": "pnpm@12.5.1",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,json}\"",
+    "db:generate": "pnpm --filter @radar/database db:generate",
+    "db:push": "pnpm --filter @radar/database db:push",
+    "db:migrate": "pnpm --filter @radar/database db:migrate",
+    "db:seed": "pnpm --filter @radar/database db:seed"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2"
+  }
+}
