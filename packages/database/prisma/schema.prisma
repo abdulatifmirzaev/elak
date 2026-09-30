@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(cuid())
+  telegramId    BigInt         @unique
+  username      String?
+  interests     UserInterest[]
+  channels      UserChannel[]
+  createdAt     DateTime       @default(now())
+  isActive      Boolean        @default(true) // false after /stop
+  digestHourUtc Int            @default(6)    // first of the 2 daily slots, configurable later
+}
+
+model Interest {
+  id    String         @id @default(cuid())
+  name  String         @unique // e.g. "Texnologiya", "Karyera"
+  users UserInterest[]
+}
+
+model UserInterest {
+  userId     String
+  interestId String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  interest   Interest @relation(fields: [interestId], references: [id], onDelete: Cascade)
+
+  @@id([userId, interestId])
+}
+
+model Channel {
+  id            String        @id @default(cuid())
+  username      String        @unique // without @
+  title         String?
+  lastScrapedAt DateTime?
+  isReachable   Boolean       @default(true)
+  users         UserChannel[]
+  posts         Post[]
+}
+
+model UserChannel {
+  userId    String
+  channelId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  channel   Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  addedAt   DateTime @default(now())
+
+  @@id([userId, channelId])
+}
+
+model Post {
+  id            String    @id @default(cuid())
+  channelId     String
+  channel       Channel   @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  telegramMsgId BigInt
+  rawText       String?
+  summary       String? // LLM-generated short summary
+  category      String? // matched to Interest for personalization
+  postedAt      DateTime?
+  fetchedAt     DateTime  @default(now())
+
+  @@unique([channelId, telegramMsgId])
+}
+
+model Digest {
+  id      String   @id @default(cuid())
+  userId  String
+  sentAt  DateTime @default(now())
+  status  String // "sent" | "failed" | "skipped_no_updates"
+  postIds String[] // posts included in this digest
+}
