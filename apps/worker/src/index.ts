@@ -8,6 +8,7 @@ export * from "./services/channel-fetcher.js";
 export * from "./services/post-summarizer.js";
 export * from "./services/digest-builder.js";
 export * from "./services/delivery-queue.js";
+export * from "./scheduler/scheduler.js";
 export * from "./utils/logger.js";
 export * from "./utils/retry.js";
 
@@ -16,16 +17,17 @@ import { ChannelFetcherService } from "./services/channel-fetcher.js";
 import { PostSummarizerService } from "./services/post-summarizer.js";
 import { DigestBuilderService } from "./services/digest-builder.js";
 import { ThrottledDeliveryQueue } from "./services/delivery-queue.js";
+import { CronSchedulerService } from "./scheduler/scheduler.js";
 
 export async function runFullWorkerCycle(): Promise<void> {
   logger.info("[Worker] Starting full twice-daily cycle...");
 
-  // 1. Fetch channel posts (deduplicated)
+  // 1. Fetch channel posts (deduplicated across all active subscribers)
   const fetcher = new ChannelFetcherService();
   const fetchStats = await fetcher.fetchAllTrackedChannels();
   logger.info("[Worker] Channel fetch completed", { ...fetchStats });
 
-  // 2. Summarize & categorize pending posts with LLM
+  // 2. Summarize & categorize pending posts with LLM (Uzbek 1-2 sentences)
   const summarizer = new PostSummarizerService();
   const sumStats = await summarizer.summarizePendingPosts();
   logger.info("[Worker] Post summarization completed", { ...sumStats });
@@ -47,11 +49,31 @@ export async function runFullWorkerCycle(): Promise<void> {
 
 export const runScraperCycle = runFullWorkerCycle;
 
-if (process.env.RUN_ONCE === "true") {
-  runFullWorkerCycle()
-    .then(() => process.exit(0))
-    .catch((err) => {
-      logger.error("[Worker] Fatal error during worker cycle", { error: String(err) });
-      process.exit(1);
-    });
+// Main process execution
+if (process.argv[1] && process.argv[1].includes("apps/worker")) {
+  if (process.env.RUN_ONCE === "true") {
+    logger.info("[Worker] RUN_ONCE=true detected. Executing single cycle...");
+    runFullWorkerCycle()
+      .then(() => {
+        logger.info("[Worker] One-off cycle completed. Exiting.");
+        process.exit(0);
+      })
+      .catch((err) => {
+        logger.error("[Worker] Fatal error during one-off worker cycle", { error: String(err) });
+        process.exit(1);
+      });
+  } else {
+    // Start persistent cron daemon
+    const scheduler = new CronSchedulerService(runFullWorkerCycle);
+    scheduler.start();
+
+    const gracefulStop = () => {
+      logger.info("[Worker] Shutting down scheduler gracefully...");
+      scheduler.stop();
+      process.exit(0);
+    };
+
+    process.once("SIGINT", gracefulStop);
+    process.once("SIGTERM", gracefulStop);
+  }
 }
