@@ -264,6 +264,9 @@ importers:
       dotenv:
         specifier: ^16.4.7
         version: 16.6.1
+      grammy:
+        specifier: ^1.35.0
+        version: 1.46.0
       node-cron:
         specifier: ^3.0.3
         version: 3.0.3
