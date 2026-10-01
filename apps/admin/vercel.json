@@ -1,0 +1,5 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "cd ../.. && pnpm --filter @radar/database db:generate && pnpm --filter @radar/admin build",
+  "outputDirectory": ".next"
+}
