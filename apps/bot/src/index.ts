@@ -33,8 +33,8 @@ export async function startBot(): Promise<void> {
   });
 }
 
-// If executed directly, run the bot
-if (process.argv[1] && process.argv[1].includes("apps/bot")) {
+// Run the bot unless in test environment
+if (process.env.NODE_ENV !== "test") {
   startBot().catch((err) => {
     logger.error("[Bot Service] Fatal error while running bot", { error: String(err) });
     process.exit(1);
